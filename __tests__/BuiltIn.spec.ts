@@ -1,60 +1,94 @@
-import { IntentTypes, Strings } from '../lambda/custom/lib/constants';
-import { getLocalePath } from '../lambda/custom/locales/locale';
-import { helpers, IntentRequestBuilder, requestFactory, responseBuilder } from './helpers';
+import { IntentTypes, Strings } from "../lambda/custom/lib/constants";
+import { getLocalePath } from "../lambda/custom/locales/locale";
+import {
+  helpers,
+  IntentRequestBuilder,
+  requestFactory,
+  responseBuilder,
+} from "./helpers";
 
-helpers.setConfigurationsAndRunPipeline({ resource: getLocalePath() }, locale => {
+helpers.setConfigurationsAndRunPipeline(
+  { resource: getLocalePath() },
+  (locale) => {
     describe("BuiltIn Intents", () => {
+      const request = requestFactory().createRequest(
+        IntentRequestBuilder,
+        locale
+      );
 
-        const request = requestFactory().createRequest(IntentRequestBuilder, locale);
+      it("Help", async () => {
+        const response = await helpers.skill(
+          request
+            .addIntent({
+              name: IntentTypes.Help,
+            })
+            .getRequest()
+        );
 
-        it("Help", async () => {
+        const matcher = responseBuilder()
+          .addResponse(Strings.HELP_MSG)
+          .addReprompt(Strings.HELP_MSG)
+          .addSimpleCard(
+            { key: Strings.SKILL_NAME },
+            { key: Strings.HELP_MSG }
+          );
 
-            const response = await helpers.skill(request.addIntent({
-                name: IntentTypes.Help
-            }).getRequest());
+        expect(response).toMatchObject(matcher.getResponse());
+      });
 
-            const matcher = responseBuilder()
-                .addResponse(Strings.HELP_MSG)
-                .addReprompt(Strings.HELP_MSG)
-                .addSimpleCard({ key: Strings.SKILL_NAME }, { key: Strings.HELP_MSG });
+      it("Stop", async () => {
+        const response = await helpers.skill(
+          request
+            .addIntent({
+              name: IntentTypes.Stop,
+            })
+            .getRequest()
+        );
 
-            expect(response).toMatchObject(matcher.getResponse());
-        });
+        const matcher = responseBuilder()
+          .addResponse(Strings.GOODBYE_MSG)
+          .addSimpleCard(
+            { key: Strings.SKILL_NAME },
+            { key: Strings.GOODBYE_MSG }
+          );
 
-        it("Stop", async () => {
-            const response = await helpers.skill(request.addIntent({
-                name: IntentTypes.Stop
-            }).getRequest());
+        expect(response).toMatchObject(matcher.getResponse());
+      });
 
-            const matcher = responseBuilder()
-                .addResponse(Strings.GOODBYE_MSG)
-                .addSimpleCard({ key: Strings.SKILL_NAME }, { key: Strings.GOODBYE_MSG });
+      it("Cancel", async () => {
+        const response = await helpers.skill(
+          request
+            .addIntent({
+              name: IntentTypes.Cancel,
+            })
+            .getRequest()
+        );
 
-            expect(response).toMatchObject(matcher.getResponse());
-        });
+        const matcher = responseBuilder()
+          .addResponse(Strings.GOODBYE_MSG)
+          .addSimpleCard(
+            { key: Strings.SKILL_NAME },
+            { key: Strings.GOODBYE_MSG }
+          );
 
-        it("Cancel", async () => {
-            const response = await helpers.skill(request.addIntent({
-                name: IntentTypes.Cancel
-            }).getRequest());
+        expect(response).toMatchObject(matcher.getResponse());
+      });
 
-            const matcher = responseBuilder()
-                .addResponse(Strings.GOODBYE_MSG)
-                .addSimpleCard({ key: Strings.SKILL_NAME }, { key: Strings.GOODBYE_MSG });
+      it("Fallback", async () => {
+        const response = await helpers.skill(
+          request
+            .addIntent({
+              name: IntentTypes.Fallback,
+            })
+            .getRequest()
+        );
 
-            expect(response).toMatchObject(matcher.getResponse());
-        });
+        const matcher = responseBuilder()
+          .addResponse(Strings.ERROR_MSG)
+          .addReprompt(Strings.HELP_MSG);
 
-        it("Fallback", async () => {
-            const response = await helpers.skill(request.addIntent({
-                name: IntentTypes.Fallback
-            }).getRequest());
-
-            const matcher = responseBuilder()
-                .addResponse(Strings.ERROR_MSG)
-                .addReprompt(Strings.HELP_MSG)
-
-            expect(response).toMatchObject(matcher.getResponse());
-        });
+        expect(response).toMatchObject(matcher.getResponse());
+      });
     });
-});
+  }
+);

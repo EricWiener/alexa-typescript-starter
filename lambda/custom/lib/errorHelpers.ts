@@ -7,7 +7,7 @@ import { ErrorTypes } from './constants';
  * @param type 
  */
 function createError(
-    msg: string = "Something unexpected happened.",
+    msg = "Something unexpected happened.",
     type: ErrorTypes = ErrorTypes.Unknown
 ): Error {
     const error = new Error(msg);

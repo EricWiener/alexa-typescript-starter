@@ -9,35 +9,35 @@ This is a simple starter project for Alexa skills using Typescript.
 
 - Default request handlers
 
-| Name |
-| --- |
-| `LaunchRequest` |
-| `SessionEndedRequest` |
-| `System.ExceptionEncountered` |
-| `AMAZON.HelpIntent` |
+| Name                                          |
+| --------------------------------------------- |
+| `LaunchRequest`                               |
+| `SessionEndedRequest`                         |
+| `System.ExceptionEncountered`                 |
+| `AMAZON.HelpIntent`                           |
 | `AMAZON.StopIntent` and `AMAZON.CancelIntent` |
-| `AMAZON.FallbackIntent` |
+| `AMAZON.FallbackIntent`                       |
 
 - Extra handlers
 
-| Name | Description |
-| --- | --- |
-| `HelloWorld` | Triggered when the user says "hello", will answer back with "hello". |
-| `Debug` | Can be placed at the beginning of the request handlers stack and it will print the `handlerInput`. Useful for debugging. |
+| Name         | Description                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `HelloWorld` | Triggered when the user says "hello", will answer back with "hello".                                                     |
+| `Debug`      | Can be placed at the beginning of the request handlers stack and it will print the `handlerInput`. Useful for debugging. |
 
 - Error handlers
 
-| Name | Description |
-| --- | --- |
+| Name         | Description                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Unexpected` | Catches `ErrorTypes.Unexpected`, which should be thrown when...something unexpected happens. It will tell the user something unexpected happend, and to try again later. |
-| `Unknown` | Catches all other errors. It will tell the user it didn't understand the command, and to try saying it again (doesn't end session). |
+| `Unknown`    | Catches all other errors. It will tell the user it didn't understand the command, and to try saying it again (doesn't end session).                                      |
 
 - Request interceptors
 
-| Name | Description |
-| --- | --- |
-| `Localization` | Adds `i18next` localization functions to the `RequestAttributes`. |
-| `Slots` | Parses the slot values, adds additional useful information to them (e.g. if it was an exact match, or if it's ambiguous etc.), and adds them to the `RequestAttributes`. Check the `GetSlotValues` function inside `lambda/custom/lib/helpers.ts` for more details. |
+| Name           | Description                                                                                                                                                                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Localization` | Adds `i18next` localization functions to the `RequestAttributes`.                                                                                                                                                                                                   |
+| `Slots`        | Parses the slot values, adds additional useful information to them (e.g. if it was an exact match, or if it's ambiguous etc.), and adds them to the `RequestAttributes`. Check the `GetSlotValues` function inside `lambda/custom/lib/helpers.ts` for more details. |
 
 - Localization strings
 
@@ -148,14 +148,14 @@ Press g to start a GUI session and ctrl-c to quit.
 
 ## Developer tasks
 
-| Command | Description |
-| --- | --- |
-| `clean` | Deletes the `dist` folder |
-| `build` | Builds the lambda function and exports it to the `dist` folder |
-| `deploy` | Builds the lambda function and deploys EVERYTHING (skill, model, lambda) |
-| `deploy:lambda` | Builds the lambda function and deploys it (just the lambda function) |
-| `deploy:local` | Deploys the skill details for the local profile, which will update the HTTPS endpoint |
-| `start` | Starts the local `express` server using `nodemon` for local development |
+| Command         | Description                                                                           |
+| --------------- | ------------------------------------------------------------------------------------- |
+| `clean`         | Deletes the `dist` folder                                                             |
+| `build`         | Builds the lambda function and exports it to the `dist` folder                        |
+| `deploy`        | Builds the lambda function and deploys EVERYTHING (skill, model, lambda)              |
+| `deploy:lambda` | Builds the lambda function and deploys it (just the lambda function)                  |
+| `deploy:local`  | Deploys the skill details for the local profile, which will update the HTTPS endpoint |
+| `start`         | Starts the local `express` server using `nodemon` for local development               |
 
 To see the actual commands, check `package.json`.
 
@@ -169,26 +169,26 @@ Taken from [the official hello world project](https://github.com/alexa/skill-sam
 
 2. Simulate verbal interaction with your skill through the command line (this might take a few moments) using the following example:
 
-	```bash
-	 $ ask simulate -l en-US -t "open greeter"
+   ```bash
+    $ ask simulate -l en-US -t "open greeter"
 
-	 ✓ Simulation created for simulation id: 4a7a9ed8-94b2-40c0-b3bd-fb63d9887fa7
-	◡ Waiting for simulation response{
-	  "status": "SUCCESSFUL",
-	  ...
-	 ```
+    ✓ Simulation created for simulation id: 4a7a9ed8-94b2-40c0-b3bd-fb63d9887fa7
+   ◡ Waiting for simulation response{
+     "status": "SUCCESSFUL",
+     ...
+   ```
 
 3. Once the "Test" switch is enabled, your skill can be tested on devices associated with the developer account as well. Speak to Alexa from any enabled device, from your browser at [echosim.io](https://echosim.io/welcome), or through your Amazon Mobile App and say :
 
-	```text
-	Alexa, start hello world
-	```
+   ```text
+   Alexa, start hello world
+   ```
 
 ## Customization
 
 Taken from [the official hello world project](https://github.com/alexa/skill-sample-nodejs-hello-world/blob/master/instructions/7-cli.md#customization).
 
-1. ```./skill.json```
+1. `./skill.json`
 
    Change the skill name, example phrase, icons, testing instructions etc ...
 
@@ -196,19 +196,19 @@ Taken from [the official hello world project](https://github.com/alexa/skill-sam
 
    See the Skill [Manifest Documentation](https://developer.amazon.com/docs/smapi/skill-manifest.html) for more information.
 
-2. ```./lambda/custom/index.ts```
+2. `./lambda/custom/index.ts`
 
    Modify messages, and data from the source code to customize the skill.
 
-3. ```./models/*.json```
+3. `./models/*.json`
 
-	Change the model definition to replace the invocation name and the sample phrase for each intent.  Repeat the operation for each locale you are planning to support.
+   Change the model definition to replace the invocation name and the sample phrase for each intent. Repeat the operation for each locale you are planning to support.
 
 4. Remember to re-deploy your skill and Lambda function for your changes to take effect.
 
-	```bash
-	$ npm run deploy
-	```
+   ```bash
+   $ npm run deploy
+   ```
 
 ## License
 

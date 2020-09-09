@@ -13,7 +13,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "start": "nodemon",
-    "format": "prettier --write **/*.{ts,tsx,js,jsx,json,md}",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --fix",
     "typescript": "tsc --noEmit"
   },
