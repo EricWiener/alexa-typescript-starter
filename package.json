@@ -17,6 +17,12 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\" --fix",
     "typescript": "tsc --noEmit"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn lint && yarn typescript"
+    }
+  },
   "jest": {
     "testEnvironment": "node",
     "transform": {
@@ -49,12 +55,14 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^9.1.2",
     "@types/express": "^4.17.6",
     "@types/jest": "^26.0.3",
     "@types/lodash": "^4.14.157",
     "@types/node": "^14.0.14",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
+    "commitlint": "^9.1.2",
     "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest": "^24.0.0",
@@ -63,6 +71,7 @@
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",
     "gulp-typescript": "^5.0.1",
+    "husky": "^4.3.0",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.1",
