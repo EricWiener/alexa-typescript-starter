@@ -8,11 +8,7 @@
             "Alexa, open sample custom skill.",
             "Alexa, play sample custom skill."
           ],
-          "keywords": [
-            "Descriptive_Phrase_1",
-            "Descriptive_Phrase_2",
-            "Descriptive_Phrase_3"
-          ],
+          "keywords": ["Descriptive_Phrase_1", "Descriptive_Phrase_2", "Descriptive_Phrase_3"],
           "smallIconUri": "https://smallUri.com",
           "largeIconUri": "https://largeUri.com",
           "name": "Sample custom skill name.",

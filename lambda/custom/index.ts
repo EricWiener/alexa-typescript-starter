@@ -6,29 +6,25 @@ import * as HelloIntents from './intents/hello';
 import * as Interceptors from './interceptors';
 
 export const handler = Alexa.SkillBuilders.custom()
-    .addRequestHandlers(
-        // Intents.Debug,
+  .addRequestHandlers(
+    // Intents.Debug,
 
-        // Default intents
-        Intents.Launch,
-        Intents.Help,
-        Intents.Stop,
-        Intents.SessionEnded,
-        Intents.SystemExceptionEncountered,
-        Intents.Fallback,
+    // Default intents
+    Intents.Launch,
+    Intents.Help,
+    Intents.Stop,
+    Intents.SessionEnded,
+    Intents.SystemExceptionEncountered,
+    Intents.Fallback,
 
-        // Hello intents
-        HelloIntents.HelloWorld
-    )
-    .addErrorHandlers(
-        Errors.Unknown,
-        Errors.Unexpected
-    )
-    .addRequestInterceptors(
-        Interceptors.Localization,
-        Interceptors.SlotInterceptor,
-        Interceptors.LogRequest,
-    ).addResponseInterceptors(
-        Interceptors.LogResponse
-    )
-    .lambda();
+    // Hello intents
+    HelloIntents.HelloWorld,
+  )
+  .addErrorHandlers(Errors.Unknown, Errors.Unexpected)
+  .addRequestInterceptors(
+    Interceptors.Localization,
+    Interceptors.SlotInterceptor,
+    Interceptors.LogRequest,
+  )
+  .addResponseInterceptors(Interceptors.LogResponse)
+  .lambda();

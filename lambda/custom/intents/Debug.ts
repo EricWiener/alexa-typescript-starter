@@ -1,13 +1,12 @@
-import { RequestHandler } from "ask-sdk-core";
+import {RequestHandler} from 'ask-sdk-core';
 
 export const Debug: RequestHandler = {
-    canHandle(handlerInput) {
-        console.log(JSON.stringify(handlerInput, null, 2));
+  canHandle(handlerInput) {
+    console.log(JSON.stringify(handlerInput, null, 2));
 
-        return false;
-    },
-    handle(handlerInput) {
-        return handlerInput.responseBuilder
-            .getResponse();
-    }
+    return false;
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder.getResponse();
+  },
 };

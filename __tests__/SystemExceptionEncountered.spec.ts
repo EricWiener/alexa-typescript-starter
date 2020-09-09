@@ -1,17 +1,17 @@
-import { getLocalePath } from "../lambda/custom/locales/locale";
-import { helpers, requestFactory, responseBuilder } from "./helpers";
-import { SystemExceptionEncounteredRequestBuilder } from "./helpers/SystemExceptionEncouteredRequestBuilder";
+import {getLocalePath} from '../lambda/custom/locales/locale';
+import {helpers, requestFactory, responseBuilder} from './helpers';
+import {SystemExceptionEncounteredRequestBuilder} from './helpers/SystemExceptionEncouteredRequestBuilder';
 
 helpers.setConfigurationsAndRunPipeline(
   {
     resource: getLocalePath(),
   },
   (locale) => {
-    describe("Session Ended", () => {
-      it("should work", async () => {
+    describe('Session Ended', () => {
+      it('should work', async () => {
         const request = requestFactory().createRequest(
           SystemExceptionEncounteredRequestBuilder,
-          locale
+          locale,
         );
 
         const response = await helpers.skill(request.getRequest());
@@ -19,5 +19,5 @@ helpers.setConfigurationsAndRunPipeline(
         expect(response).toMatchObject(responseBuilder().getResponse());
       });
     });
-  }
+  },
 );
